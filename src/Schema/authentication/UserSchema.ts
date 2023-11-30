@@ -13,8 +13,8 @@ interface IUser{
 
 
 const validateEmail = (email: string) => {
-    var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    return re.test(email)
+    var validate = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return validate.test(email)
 };
 
 const userSchema = new mongoose.Schema<IUser>({
