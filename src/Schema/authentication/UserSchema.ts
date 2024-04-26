@@ -2,6 +2,7 @@ import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
 interface IUser{
+  actions: Array<String>;
   userId: typeof ObjectId;
   name: string;
   username: string;
@@ -18,12 +19,16 @@ const validateEmail = (email: string) => {
 };
 
 const userSchema = new mongoose.Schema<IUser>({
+  actions: [{
+    type: String,
+  }],
   userId: {
     type: ObjectId,
   },
   name: {
     type: String,
     trim: true,
+    required: [true, 'User must have a name']
   },
   username: {
     type: String,

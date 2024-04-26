@@ -2,13 +2,14 @@ import { User } from "../../Schema";
 import jwt from "jsonwebtoken";
 import { AppRequest } from "@NodeService/useRouter";
 import errorReposonse from "../../utils/ErrorResponse";
+import { v4 as uuidV4 } from "uuid";
 
 export const generateToken = async ({ req, res }: AppRequest) => {
-  const { username, password } = req.body;
+  const { email, password } = req.query;
   try {
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ email });
     if (user) {
-      const { name, username, email } = user;
+      const { name, username, email, actions, id } = user;
       const token = jwt.sign(
         user?.toJSON(),
         `${process.env.MONGO_DB_PASSWORD}`
@@ -17,11 +18,14 @@ export const generateToken = async ({ req, res }: AppRequest) => {
 
       switch (passwordMatch) {
         case true:
+          console.log(user);
           return res.status(200).json({
             status: "Success",
             data: {
               OAuth: token,
+              actions: actions,
               user: {
+                id,
                 name,
                 username,
                 email,
@@ -40,7 +44,7 @@ export const generateToken = async ({ req, res }: AppRequest) => {
   } catch (e) {
     return res.json({
       status: "failed",
-      message: e,
+      error: e,
     });
   }
 };
@@ -50,11 +54,12 @@ export const createUser = async ({ req, res }: AppRequest) => {
     const { name, username, email, password, image } = req.body;
 
     const user = await User.create({
+      actions: ["Onboarding", "VerifyEmail"],
       name,
-      username,
+      username: username ? username : `User-${uuidV4().slice(0, 8)}`,
       email,
       password: password,
-      image
+      image: image ? image : "",
     });
 
     res.status(201).json({
