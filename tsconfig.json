@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "CommonJS",
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "declaration": false,
@@ -11,10 +11,10 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "typeRoots": ["node_modules/@types", "src/types"],
+    "baseUrl": "./",
     "paths": {
-      "@NodeService/*": ["./src/*"]
+      "@NodeService/*": ["src/*"]
     }
   },
   "compileOnSave": true,
-  "include": ["src", "src/app.ts"]
 }

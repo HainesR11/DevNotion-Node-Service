@@ -14,9 +14,12 @@ const connectionString = process.env.MONGO_DB_DATABASE?.replace(
   "<password>",
   `${process.env.MONGO_DB_PASSWORD}`
 );
-MongoConnect(connectionString);
+
+
+MongoConnect(connectionString as string);
 
 useRouter(app);
+
 
 const port = process.env.PORT || "2812";
 
