@@ -1,6 +1,9 @@
-// import { Router } from "express";
-// import call from "@NodeService/utils/MakeCall";
+import { Router } from "express";
+import call from "../utils/MakeCall";
+import { updateUser } from "../controllers/User/User";
 
-// const router = Router();
+const router = Router();
 
-// router.get('/:id', call())
+router.patch('/:id', call(updateUser))
+
+export default router
