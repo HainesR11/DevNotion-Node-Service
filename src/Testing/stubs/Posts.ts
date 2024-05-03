@@ -21,7 +21,7 @@ export const HomePostStub: TPost[] = [
 
       { image: "", username: "HainesR4", name: "Rhys Haines", type: 'Like' },
 
-      { image: "", username: "HainesR5", name: "Rhys Haines", type: 'Like' },
+      { image: "", username: "HainesR5", name: "Rhys Haines", type: 'Idea' },
 
       { image: "", username: "HainesR6", name: "Rhys Haines", type: 'Love' },
 

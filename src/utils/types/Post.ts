@@ -2,7 +2,7 @@ export type TPostUser = {
     image: unknown,
     name: string,
     username: string,
-    type?: 'Like' | 'Love'
+    type?: 'Like' | 'Love' | 'Idea'
 }
 
 export type TPostComment =  {
